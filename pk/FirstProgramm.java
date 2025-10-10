@@ -9,6 +9,7 @@ public class FirstProgramm {
                 System.out.print(" ");
             }
         
+            
             for (int j = 0; j < i * stufentiefe; j++) {
                 System.out.print("*");
             }
