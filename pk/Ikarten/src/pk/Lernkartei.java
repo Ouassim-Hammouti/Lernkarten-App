@@ -1,6 +1,6 @@
 package pk;
 import java.util.Random;
-import java.util.random.*;;
+;
 
 
 public class Lernkartei  {
@@ -13,7 +13,7 @@ public class Lernkartei  {
         anzahlkarten = 0;
     }
 
-    public void hinzufügen(Lernkarte karte){
+    public void hinzufuegen(Lernkarte karte){
         if(anzahlkarten<karten.length){
             karten[anzahlkarten]=karte;
             anzahlkarten++;
@@ -39,19 +39,19 @@ public class Lernkartei  {
         return anzahlkarten;
     }
 
-public Lernkarte[] gibKartenZuKategorie (String katgorie){
+public Lernkarte[] gibKartenZuKategorie (String kategorie){
     int zahler = 0 ;
 
 
     for(int i = 0;i<anzahlkarten;i++){
-        if (karten[i].getKategorie().equals(kategorie)){
+        if (karten[i].getKategorie().equals(kategorie)){ // Warum fehlermeldung für kategorie?
             zahler++;
         }
     }
 Lernkarte[] ergebnis = new Lernkarte[zahler];
         int index = 0;
         for (int i = 0; i < anzahlkarten; i++) {
-            if (karten[i].getKategorie().equalsIgnoreCase(kategorie)) {
+            if (karten[i].getKategorie().equalsIgnoreCase(kategorie)) { // Warum fehlermeldung für kategorie?
                 ergebnis[index] = karten[i];
                 index++;
             }

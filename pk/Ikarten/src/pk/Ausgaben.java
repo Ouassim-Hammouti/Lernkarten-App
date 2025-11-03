@@ -7,16 +7,16 @@ public class Ausgaben {
     public static void main(String[] args) {
         Lernkartei kartei = new Lernkartei(5);
 
-        Lernkarte karte1 = new Lernkarte("OOP", "Konstruktor", "Was ist ein Konstruktor?", 
+        Lernkarte karte1 = new EinzelantwortKarte("OOP", "Konstruktor", "Was ist ein Konstruktor?", 
                                          "Ein Konstruktor initialisiert ein neues Objekt.");
-        Lernkarte karte2 = new Lernkarte("OOP", "Vererbung", "Was ist Vererbung?", 
+        Lernkarte karte2 = new EinzelantwortKarte("OOP", "Vererbung", "Was ist Vererbung?", 
                                          "Eine Klasse kann Eigenschaften einer anderen übernehmen.");
-        Lernkarte karte3 = new Lernkarte("SQL", "SELECT", "Was macht SELECT?", 
+        Lernkarte karte3 = new EinzelantwortKarte("SQL", "SELECT", "Was macht SELECT?", 
                                          "SELECT wählt Daten aus einer Tabelle aus.");
 
-        kartei.hinzufügen(karte1);
-        kartei.hinzufügen(karte2);
-        kartei.hinzufügen(karte3);
+        kartei.hinzufuegen(karte1);
+        kartei.hinzufuegen(karte2);
+        kartei.hinzufuegen(karte3);
 
         System.out.println("--- Alle Karten in der Kartei ---");
         kartei.druckeAlleKarten();
@@ -39,9 +39,9 @@ public class Ausgaben {
         }
 
         System.out.println("--- Test: Kartei ist voll ---");
-        kartei.hinzufügen(new Lernkarte("Java", "Datentypen", "Was ist ein Datentyp?", "Definiert, welche Werte eine Variable haben kann."));
-        kartei.hinzufügen(new Lernkarte("Java", "Schleifen", "Was ist eine Schleife?", "Eine wiederholende Kontrollstruktur."));
-        kartei.hinzufügen(new Lernkarte("Java", "If-Else", "Was macht eine If-Abfrage?", "Überprüft Bedingungen."));
+        kartei.hinzufuegen(new EinzelantwortKarte("Java", "Datentypen", "Was ist ein Datentyp?", "Definiert, welche Werte eine Variable haben kann."));
+        kartei.hinzufuegen(new EinzelantwortKarte("Java", "Schleifen", "Was ist eine Schleife?", "Eine wiederholende Kontrollstruktur."));
+        kartei.hinzufuegen(new EinzelantwortKarte("Java", "If-Else", "Was macht eine If-Abfrage?", "Überprüft Bedingungen."));
     }
 }
 
