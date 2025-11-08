@@ -5,7 +5,7 @@ package pk;
 public class Ausgaben {
 
     public static void main(String[] args) {
-        Lernkartei kartei = new Lernkartei(5);
+        LernkarteiArray kartei = new LernkarteiArray(5);
 
         Lernkarte karte1 = new EinzelantwortKarte("OOP", "Konstruktor", "Was ist ein Konstruktor?", 
                                          "Ein Konstruktor initialisiert ein neues Objekt.");

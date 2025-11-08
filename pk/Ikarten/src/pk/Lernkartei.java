@@ -1,95 +1,88 @@
 package pk;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
-;
+import pk.Lernkarte;
 
+public class Lernkartei {
+    
+ArrayList <Lernkarte> Liste ;
 
-public class Lernkartei  {
-
-    private Lernkarte[] karten;
     private int anzahlkarten;
     
-    public Lernkartei(int maxKarten) {
-        karten = new Lernkarte[maxKarten];
-        anzahlkarten = 0;
+    public Lernkartei () { 
+        Liste = new ArrayList<>();
     }
 
-    public void hinzufuegen(Lernkarte karte){
-        if(anzahlkarten<karten.length){
-            karten[anzahlkarten]=karte;
-            anzahlkarten++;
-        }
-        else{
-            System.out.println("Maximale Anzahl an Karten erreicht.");
-        }
+    public void hinzufuegen(Lernkarte Lernkarte){
+        Liste.add(Lernkarte);
+        System.out.println("Karte hinzugefügt.");
     }
 
     public void druckeAlleKarten(){
-        if(anzahlkarten==0){
-            System.out.println("Keine Karten vorhanden");
-            return;
+       for(Lernkarte karte : Liste){
+           karte.druckeKarte();
+           System.out.println();
         }
 
-        for(int i = 0 ; i < karten.length ; i++){
-            karten[i].druckeKarte();
-            System.out.println();
-        }
     }
 
+
+
     public int gibAnzahlkarten(){
-        return anzahlkarten;
+        Iterator<Lernkarte> iterator = Liste.iterator();
+        int count = 0;
+
+        while(iterator.hasNext()){
+            Lernkarte karte = iterator.next();
+            count++;
+        }
+        return count;
     }
 
 public Lernkarte[] gibKartenZuKategorie (String kategorie){
-    int zahler = 0 ;
-
-
-    for(int i = 0;i<anzahlkarten;i++){
-        if (karten[i].getKategorie().equals(kategorie)){ // Warum fehlermeldung für kategorie?
-            zahler++;
+   
+    Lernkarte[] ergebnis = new Lernkarte[gibAnzahlkarten()];
+    for(Lernkarte karte :  Liste ){
+        if (karte.getKategorie().equals(kategorie)){
+           for(int i = 0 ; i < ergebnis.length ; i++){
+               ergebnis[i]=karte;
+          }
+        
         }
+    
+     }
+
+    return ergebnis;
+
     }
-Lernkarte[] ergebnis = new Lernkarte[zahler];
-        int index = 0;
-        for (int i = 0; i < anzahlkarten; i++) {
-            if (karten[i].getKategorie().equalsIgnoreCase(kategorie)) { // Warum fehlermeldung für kategorie?
-                ergebnis[index] = karten[i];
-                index++;
-            }
-        }
 
-        return ergebnis; 
 
-}
 
- public Lernkarte[] erzeugeDeck(int anzahlKartenImDeck) {
-        if (anzahlkarten == 0) {
+ public Lernkarte[] erzeugeDeck (int anzahlKartenImDeck) {
+        if (gibAnzahlkarten() == 0) {
             System.out.println("Keine Lernkarten in der Kartei vorhanden.");
-            return new Lernkarte[0];
+        
         }
 
         Random zufall = new Random();
         Lernkarte[] deck = new Lernkarte[anzahlKartenImDeck];
 
-        for (int i = 0; i < anzahlKartenImDeck; i++) {
-            int zufallsIndex = zufall.nextInt(anzahlkarten); 
-            deck[i] = karten[zufallsIndex]; 
-        }
+       for(Lernkarte karte :  Liste ) {
+            int zufallsIndex = zufall.nextInt(gibAnzahlkarten()); 
+            for (int i = 0; i < anzahlKartenImDeck; i++) {
+                
+            
+            deck[i] = karte.get(zufallsIndex); // Warum bei get Fehlermeldung?
+        }                   //get korrigieren !!
 
-        return deck;
+       
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+ return deck;
+}
 
 
 }

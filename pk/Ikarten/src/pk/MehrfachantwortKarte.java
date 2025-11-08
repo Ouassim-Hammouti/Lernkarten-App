@@ -22,10 +22,7 @@ public MehrfachantwortKarte( String kategorie, String titel, String frage , Stri
     }
 
 
-
 }
-
-
 
  @Override 
     public void zeigeRueckseite() {

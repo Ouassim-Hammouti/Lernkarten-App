@@ -4,7 +4,7 @@ public class Ausgaben2 {
     
 public static void main(String[] args) {
 
-Lernkartei kartei = new Lernkartei(5);
+LernkarteiArray kartei = new LernkarteiArray(5);
 
 Lernkarte Einzelkarte1 = new EinzelantwortKarte ("Mathe", "Pythagoras", "Was besagt der Satz des Pythagoras?", "In einem rechtwinkligen Dreieck ist die Summe der Quadrate der Katheten gleich dem Quadrat der Hypotenuse.");
 Lernkarte Einzelkarte2 = new EinzelantwortKarte ("Geschichte", "WWII", "Wann begann der Zweite Weltkrieg?", "1939");
@@ -17,7 +17,6 @@ kartei.hinzufuegen(Einzelkarte2);
 kartei.hinzufuegen(Mehrfachkarte1);
 kartei.hinzufuegen(Mehrfachkarte2); 
     
- //Ich krieg noch Fehlermeldung bei der ausführung der Main methode am donnerstag korriegieren und dann commiten !!
  
     
   System.out.println("--- Anzahl der Karten ---");

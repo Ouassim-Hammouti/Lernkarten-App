@@ -52,7 +52,6 @@ public abstract class Lernkarte {
     
 
     public void druckeKarte() {
-        zeigeVorderseite();
-        zeigeRueckseite();
+     
     }
 }
