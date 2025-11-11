@@ -1,10 +1,8 @@
 package pk;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-import pk.Lernkarte;
 
 public class Lernkartei {
     
@@ -70,16 +68,17 @@ public Lernkarte[] gibKartenZuKategorie (String kategorie){
         Random zufall = new Random();
         Lernkarte[] deck = new Lernkarte[anzahlKartenImDeck];
 
-       for(Lernkarte karte :  Liste ) {
-            int zufallsIndex = zufall.nextInt(gibAnzahlkarten()); 
-            for (int i = 0; i < anzahlKartenImDeck; i++) {
-                
+      
             
-            deck[i] = karte.get(zufallsIndex); // Warum bei get Fehlermeldung?
-        }                   //get korrigieren !!
+            for (int i = 0; i < anzahlKartenImDeck; i++) {
+                 int zufallsIndex = zufall.nextInt(gibAnzahlkarten()); 
+            
+            deck[i] = Liste.get(zufallsIndex); 
+            
+            }
 
        
-    }
+    
 
  return deck;
 }

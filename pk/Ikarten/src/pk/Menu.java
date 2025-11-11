@@ -54,7 +54,7 @@ public static void main(String[] args) {
 
     } 
 
-    public void lernen(){ // Hat fehler wegen get in Lernkartei !! Beheben !
+    public void lernen(){  
 
         Lernkarte [] deck = kartei.erzeugeDeck(5);
          for(Lernkarte karte : deck){
