@@ -1,17 +1,21 @@
 package pk;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
-public class Lernkartei {
+public class Lernkartei  {
     
-ArrayList <Lernkarte> Liste ;
+    private Set<Lernkarte> Liste;
 
     private int anzahlkarten;
+
     
     public Lernkartei () { 
-        Liste = new ArrayList<>();
+        Liste = new HashSet<>();
     }
 
     public void hinzufuegen(Lernkarte Lernkarte){
@@ -19,7 +23,14 @@ ArrayList <Lernkarte> Liste ;
         System.out.println("Karte hinzugefügt.");
     }
 
+    
+
+
     public void druckeAlleKarten(){
+        ArrayList<Lernkarte> Liste = new ArrayList<>(this.Liste);
+
+        Collections.sort(Liste);
+
        for(Lernkarte karte : Liste){
            karte.druckeKarte();
            System.out.println();
@@ -68,12 +79,13 @@ public Lernkarte[] gibKartenZuKategorie (String kategorie){
         Random zufall = new Random();
         Lernkarte[] deck = new Lernkarte[anzahlKartenImDeck];
 
-      
+            ArrayList<Lernkarte> karteListe = new ArrayList<>(Liste);
+            Iterator<Lernkarte> it = karteListe.iterator();
             
-            for (int i = 0; i < anzahlKartenImDeck; i++) {
+           for (int i = 0; i < anzahlKartenImDeck; i++) {
                  int zufallsIndex = zufall.nextInt(gibAnzahlkarten()); 
             
-            deck[i] = Liste.get(zufallsIndex); 
+            deck[i] = karteListe.get(zufallsIndex);
             
             }
 
@@ -83,5 +95,6 @@ public Lernkarte[] gibKartenZuKategorie (String kategorie){
  return deck;
 }
 
+  
 
 }

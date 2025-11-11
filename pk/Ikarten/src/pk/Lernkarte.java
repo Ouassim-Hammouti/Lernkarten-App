@@ -1,6 +1,8 @@
 package pk;
 
-public abstract class Lernkarte {
+import java.util.Objects;
+
+public abstract class Lernkarte implements Comparable<Lernkarte> {
     
     private static int naechsteId = 1;
 
@@ -20,7 +22,10 @@ public abstract class Lernkarte {
         this.frage = frage;
        
     }
-
+    @Override
+     public int compareTo(Lernkarte o) {
+        return Integer.compare(o.getId(), this.id);
+    }
    
     public int getId() {
         return id;
@@ -54,4 +59,28 @@ public abstract class Lernkarte {
     public void druckeKarte() {
      
     }
+
+public boolean equals(Object obj) {
+    if (this == obj)
+        return true;
+    if (obj == null || getClass() != obj.getClass())
+        return false;
+    Lernkarte other = (Lernkarte) obj;
+    return  
+           kategorie.equals(other.kategorie) &&
+           titel.equals(other.titel) &&
+           frage.equals(other.frage);
+
+}
+
+ public int hashCode() {
+        return Objects.hash( getKategorie(), getTitel(), getFrage());
+    }
+
+
+
+
+
+
+
 }

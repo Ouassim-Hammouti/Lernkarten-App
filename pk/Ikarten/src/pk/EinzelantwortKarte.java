@@ -1,5 +1,7 @@
 package pk;
 
+import java.util.Objects;
+
 public class EinzelantwortKarte extends Lernkarte {
 
     private String antwort;
@@ -27,9 +29,23 @@ public class EinzelantwortKarte extends Lernkarte {
         zeigeRueckseite();
     }
 
+    public int hashCode() {
+        return Objects.hash( getKategorie(), getTitel(), getFrage(), antwort);
+    }
 
-
-
+    
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        EinzelantwortKarte other = (EinzelantwortKarte) obj;
+        return 
+               Objects.equals(getKategorie(), other.getKategorie()) &&
+               Objects.equals(getTitel(), other.getTitel()) &&
+               Objects.equals(getFrage(), other.getFrage()) &&
+               Objects.equals(antwort, other.antwort);
+    }
 
 
 

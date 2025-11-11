@@ -1,5 +1,7 @@
 package pk;
 
+import java.util.Objects;
+
 public class MehrfachantwortKarte extends Lernkarte {
 
     private String[] moeglicheAntworten;
@@ -43,7 +45,27 @@ public MehrfachantwortKarte( String kategorie, String titel, String frage , Stri
     }
 
 
+public int hashCode() {
+    return Objects.hash( getKategorie(), getTitel(), getFrage(), moeglicheAntworten, richtigeAntwort);
+}
 
 
+
+
+public boolean equals(Object obj) {
+    if (this == obj)
+        return true;
+    if (obj == null || getClass() != obj.getClass())
+        return false;
+    MehrfachantwortKarte other = (MehrfachantwortKarte) obj;
+    return super.equals(other);
+
+    }
+
+
+
+
+
+    
 
 }
