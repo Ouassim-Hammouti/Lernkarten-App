@@ -2,7 +2,7 @@ package pk;
 
 import java.util.Objects;
 
-public class EinzelantwortKarte extends Lernkarte {
+    public class EinzelantwortKarte extends Lernkarte {
 
     private String antwort;
 

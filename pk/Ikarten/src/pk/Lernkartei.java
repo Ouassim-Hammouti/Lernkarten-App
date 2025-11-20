@@ -27,6 +27,7 @@ public class Lernkartei  {
 
 
     public void druckeAlleKarten(){
+        
         ArrayList<Lernkarte> Liste = new ArrayList<>(this.Liste);
 
         Collections.sort(Liste);
