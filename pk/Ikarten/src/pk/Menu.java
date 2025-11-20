@@ -1,5 +1,4 @@
 package pk;
-import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -112,12 +111,10 @@ public static void main(String[] args) {
 
 
 
- private void warteAufEnter() {
-    try {
-        System.in.read(new byte[2]);
-    } catch (IOException e) {
-        System.err.println("Fehler: " + e.getMessage());
-    }
- }
+private void warteAufEnter() {
+    System.out.println("(Drücke Enter zum Fortfahren)");
+    scanner.nextLine();
+}
+
 
 }

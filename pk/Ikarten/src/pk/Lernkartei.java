@@ -54,12 +54,24 @@ public class Lernkartei  {
 
 public Lernkarte[] gibKartenZuKategorie (String kategorie){
    
-    Lernkarte[] ergebnis = new Lernkarte[gibAnzahlkarten()];
+    int count = 0;
+    for (Lernkarte karte : Liste) {
+        if (karte.getKategorie().equals(kategorie)) { 
+            count++;
+        }
+    }
+
+
+    Lernkarte[] ergebnis = new Lernkarte[count];
+    int i =0;
+
+
     for(Lernkarte karte :  Liste ){
         if (karte.getKategorie().equals(kategorie)){
-           for(int i = 0 ; i < ergebnis.length ; i++){
+          
                ergebnis[i]=karte;
-          }
+               i++;
+          
         
         }
     
