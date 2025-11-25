@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
+import javax.swing.JOptionPane;
 
 public class Lernkartei  {
     
@@ -18,8 +19,14 @@ public class Lernkartei  {
         Liste = new HashSet<>();
     }
 
-    public void hinzufuegen(Lernkarte Lernkarte){
-        Liste.add(Lernkarte);
+    public void hinzufuegen(Lernkarte lernkarte){
+        try {
+            lernkarte.validiere();
+        } catch (UngueltigeKarteException ex) {
+           JOptionPane.showMessageDialog(null, "Fehler beim Hinzufügen der Karte: " + ex.getMessage());
+           return;
+        }
+        Liste.add(lernkarte);
         System.out.println("Karte hinzugefügt.");
     }
 

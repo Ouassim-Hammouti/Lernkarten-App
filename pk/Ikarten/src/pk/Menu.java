@@ -1,4 +1,5 @@
 package pk;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -32,15 +33,28 @@ public static void main(String[] args) {
             System.out.println("5. Beenden");
             System.out.println("Bitte Aktion wählen: ");
 
-            int auswahl = scanner.nextInt();
+
+            int auswahl ;
+            
+
+            try {
+                auswahl = scanner.nextInt();
             scanner.nextLine(); 
+            }
+
+            catch (InputMismatchException e) {
+            System.out.println("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.");
+            scanner.nextLine(); 
+            continue;
+        }
 
             switch (auswahl){
             case 1 -> lernen();
-            case 2 -> Einzelantwortkartehinzufuegen();
+            case 2 -> Einzelantwortkartehinzufuegen(); // wie soll ich JOPtion in Menu machen mit einer exception ich hab das in hinzufügen gemacht mit showMessageDialog !
             case 3 -> druckeAlleKarten();
             case 4 -> DruckeKartenZuKategorie();
             case 5 -> running = false;
+            default -> System.out.println("Ungültige Auswahl. Bitte wählen Sie eine Zahl zwischen 1 und 5.");
             }
 
 
@@ -54,7 +68,7 @@ public static void main(String[] args) {
     } 
 
     public void lernen(){  
-
+        
         Lernkarte [] deck = kartei.erzeugeDeck(5);
          for(Lernkarte karte : deck){
             System.out.print("Frage: " ); karte.zeigeVorderseite();
@@ -82,10 +96,10 @@ public static void main(String[] args) {
     Lernkarte neu = new EinzelantwortKarte(kategorie, titel,frage, antwort);
     kartei.hinzufuegen(neu);
 
+    
 
+   }
 
-
-    }
 
     public void druckeAlleKarten(){
         kartei.druckeAlleKarten();
@@ -115,6 +129,7 @@ private void warteAufEnter() {
     System.out.println("(Drücke Enter zum Fortfahren)");
     scanner.nextLine();
 }
+
 
 
 }

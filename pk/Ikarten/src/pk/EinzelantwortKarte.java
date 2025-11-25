@@ -48,8 +48,14 @@ import java.util.Objects;
     }
 
 
+ public void validiere() throws UngueltigeKarteException {
+       super.validiere();
+       if (antwort == null || antwort.trim().isEmpty()) {
+        throw new UngueltigeKarteException("Ungültige Antwort");
+    }
 
 
 
+    }
 
-}
+  }

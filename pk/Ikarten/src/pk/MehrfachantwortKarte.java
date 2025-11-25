@@ -64,8 +64,24 @@ public boolean equals(Object obj) {
 
 
 
-
+public void validiere(Lernkarte karte) throws UngueltigeKarteException {
+       super.validiere();
+       if (moeglicheAntworten == null || moeglicheAntworten.length <2) {
+        throw new UngueltigeKarteException("Ungültige mögliche Antworten");
+    }
+       if (richtigeAntwort == null || richtigeAntwort.length == 0) {
+        throw new UngueltigeKarteException("Ungültige richtige Antworten");
+    }
+       
+    for (int index : richtigeAntwort) {
+        if (index < 0 || index >= moeglicheAntworten.length) {
+            throw new UngueltigeKarteException( "Ungültiger Index in den richtigen Antworten");
+        }
+    }
 
     
+
+}
+
 
 }

@@ -2,7 +2,7 @@ package pk;
 
 import java.util.Objects;
 
-public abstract class Lernkarte implements Comparable<Lernkarte> {
+public abstract class Lernkarte implements Comparable<Lernkarte> , ValidierbareKarte {
     
     private static int naechsteId = 1;
 
@@ -77,10 +77,23 @@ public boolean equals(Object obj) {
         return Objects.hash( getKategorie(), getTitel(), getFrage());
     }
 
+    @Override
+    public void validiere( ) throws UngueltigeKarteException {
+       if (kategorie == null || kategorie.trim().isEmpty()) {
+        throw new UngueltigeKarteException("Ungültige Kategorie");
+    }
+     if (titel == null || titel.trim().isEmpty()) {
+        throw new UngueltigeKarteException("Ungültiger Titel");
+    }
+     if (frage == null || frage.trim().isEmpty()) {
+        throw new UngueltigeKarteException("Ungültige Frage");
+    }
 
 
 
 
 
+}
 
+    
 }
