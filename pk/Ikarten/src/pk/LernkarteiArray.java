@@ -46,14 +46,14 @@ public Lernkarte[] gibKartenZuKategorie (String kategorie){
 
 
     for(int i = 0;i<anzahlkarten;i++){
-        if (karten[i].getKategorie().equals(kategorie)){ // Warum fehlermeldung für kategorie?
+        if (karten[i].getKategorie().equals(kategorie)){ 
             zahler++;
         }
     }
 Lernkarte[] ergebnis = new Lernkarte[zahler];
         int index = 0;
         for (int i = 0; i < anzahlkarten; i++) {
-            if (karten[i].getKategorie().equalsIgnoreCase(kategorie)) { // Warum fehlermeldung für kategorie?
+            if (karten[i].getKategorie().equalsIgnoreCase(kategorie)) { 
                 ergebnis[index] = karten[i];
                 index++;
             }

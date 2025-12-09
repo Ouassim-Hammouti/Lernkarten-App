@@ -2,7 +2,7 @@ package pk;
 
 import java.util.Objects;
 
-public abstract class Lernkarte implements Comparable<Lernkarte> , ValidierbareKarte {
+public abstract class Lernkarte implements Comparable<Lernkarte> , ValidierbareKarte, CsvExportable {
     
     private static int naechsteId = 1;
 
@@ -89,11 +89,19 @@ public boolean equals(Object obj) {
         throw new UngueltigeKarteException("Ungültige Frage");
     }
 
-
-
-
-
 }
 
-    
+   public String exportiereAlsCsv() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append(",");
+        sb.append(kategorie).append(",");
+        sb.append(titel).append(",");
+        sb.append(frage);
+        sb.append("\n");
+
+        return sb.toString();
+    }
+
+
+
 }

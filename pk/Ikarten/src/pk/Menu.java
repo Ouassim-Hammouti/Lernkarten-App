@@ -1,10 +1,14 @@
 package pk;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
-public class Menu {
+
+public class Menu  {
     
 private static  Lernkartei kartei = new Lernkartei();
 private static Scanner scanner = new Scanner(System.in);
@@ -30,7 +34,8 @@ public static void main(String[] args) {
             System.out.println("2. Einzelantwortkarte hinzufuegen");
             System.out.println("3. Drucke alle Karten");
             System.out.println("4. Drucke Karten zu Kategorie ");
-            System.out.println("5. Beenden");
+            System.out.println("5. CSV-Export");
+            System.out.println("6. Beenden");
             System.out.println("Bitte Aktion wählen: ");
 
 
@@ -53,7 +58,75 @@ public static void main(String[] args) {
             case 2 -> Einzelantwortkartehinzufuegen(); // wie soll ich JOPtion in Menu machen mit einer exception ich hab das in hinzufügen gemacht mit showMessageDialog !
             case 3 -> druckeAlleKarten();
             case 4 -> DruckeKartenZuKategorie();
-            case 5 -> running = false;
+            case 5 -> {
+            String dateiname="";
+            boolean wiederholen = true;
+            while (wiederholen) {
+
+               dateiname = JOptionPane.showInputDialog(
+                null,
+                "Bitte geben Sie den Dateinamen für den CSV-Export ein:",
+                "CSV-Export",
+                JOptionPane.QUESTION_MESSAGE);
+
+            if(dateiname == null || dateiname.trim().isEmpty()){ 
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Der Dateiname darf nicht leer sein. Bitte versuchen Sie es erneut.",
+                    "Fehler",
+                    JOptionPane.ERROR_MESSAGE );
+
+                  continue;
+
+            }
+
+
+
+
+            Path datei = Path.of(dateiname);
+
+            if(Files.exists(datei)){
+
+                int antwort = JOptionPane.showConfirmDialog(
+                    null,
+                    "Die Datei existiert bereits. Möchten Sie sie überschreiben?",
+                    "Datei existiert",
+                    JOptionPane.YES_NO_OPTION
+                );
+                if (antwort==JOptionPane.NO_OPTION){
+                    continue;
+                }
+
+
+            }
+                
+                try{
+                    kartei.exportiereEintraegeAlsCsv(datei);
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Die Karten wurden erfolgreich nach " + dateiname + " exportiert.",
+                        "Erfolg",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    wiederholen = false;
+                }
+                catch ( IOException e){
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Fehler beim Exportieren der Datei: " + e.getMessage(),
+                        "Fehler",
+                        JOptionPane.ERROR_MESSAGE
+                    ); 
+                    break;
+                 }
+
+            
+
+        }
+
+
+    }    
+        case 6 -> running = false;
             default -> System.out.println("Ungültige Auswahl. Bitte wählen Sie eine Zahl zwischen 1 und 5.");
             }
 

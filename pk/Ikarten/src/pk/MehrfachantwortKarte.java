@@ -1,8 +1,9 @@
 package pk;
 
+import java.util.Arrays;
 import java.util.Objects;
 
-public class MehrfachantwortKarte extends Lernkarte {
+public class MehrfachantwortKarte extends Lernkarte implements CsvExportable {
 
     private String[] moeglicheAntworten;
     private int [] richtigeAntwort;
@@ -82,6 +83,27 @@ public void validiere(Lernkarte karte) throws UngueltigeKarteException {
     
 
 }
+
+
+
+public String exportiereAlsCsv() {
+
+  
+    String moeglicheant = Arrays.toString(moeglicheAntworten);   
+    String richtigeant  = Arrays.toString(richtigeAntwort);      
+
+    StringBuilder sb = new StringBuilder();
+    sb.append(getId()).append(",");
+    sb.append(getKategorie()).append(",");
+    sb.append(getTitel()).append(",");
+    sb.append(getFrage()).append(",");
+    sb.append(moeglicheant).append(",");
+    sb.append(richtigeant);
+    sb.append("\n");
+
+    return sb.toString();
+}
+
 
 
 }

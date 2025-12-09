@@ -1,5 +1,12 @@
 package pk;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -116,5 +123,48 @@ public Lernkarte[] gibKartenZuKategorie (String kategorie){
 }
 
   
+  public  void exportiereEintraegeAlsCsv(Path datei) throws IOException {
+
+    String csv = "";
+
+    
+    csv += "ID,Kategorie,Titel,Frage,Antwort(en),Richtige Antwort(en)\n";
+
+    
+    for (Lernkarte karte : Liste) {
+        csv += karte.exportiereAlsCsv() + "\n";
+    }
+
+   
+    Files.writeString(datei, csv);
+}
+
+
+
+ 
+public void exportiereEintraegeAlsCsvNio(Path datei) throws IOException {
+
+ try (FileOutputStream fos = new FileOutputStream(datei.toFile());  
+         OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+         BufferedWriter writer = new BufferedWriter(osw)) {
+
+      
+        writer.write("ID,Kategorie,Titel,Frage,Antwort(en),Richtige Antwort(en)");
+        writer.newLine();
+
+      
+        for (Lernkarte karte : Liste) {
+            writer.write(karte.exportiereAlsCsv());
+            writer.newLine();
+        }
+
+    } catch (IOException e) {
+       
+        throw e;
+    }
+}
+
 
 }
+
+

@@ -2,7 +2,7 @@ package pk;
 
 import java.util.Objects;
 
-    public class EinzelantwortKarte extends Lernkarte {
+    public class EinzelantwortKarte extends Lernkarte implements CsvExportable {
 
     private String antwort;
 
@@ -57,5 +57,21 @@ import java.util.Objects;
 
 
     }
+
+public String exportiereAlsCsv() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getId()).append(",");
+        sb.append(getKategorie()).append(",");
+        sb.append(getTitel()).append(",");
+        sb.append(getFrage()).append(",");
+        sb.append(antwort);
+        sb.append("\n");
+
+        return sb.toString();
+    }
+
+
+
+
 
   }
