@@ -19,8 +19,6 @@ public class Lernkartei  {
     
     private Set<Lernkarte> Liste;
 
-    private int anzahlkarten;
-
     
     public Lernkartei () { 
         Liste = new HashSet<>();
@@ -60,7 +58,7 @@ public class Lernkartei  {
         int count = 0;
 
         while(iterator.hasNext()){
-            Lernkarte karte = iterator.next();
+            iterator.next();
             count++;
         }
         return count;
@@ -107,7 +105,6 @@ public Lernkarte[] gibKartenZuKategorie (String kategorie){
         Lernkarte[] deck = new Lernkarte[anzahlKartenImDeck];
 
             ArrayList<Lernkarte> karteListe = new ArrayList<>(Liste);
-            Iterator<Lernkarte> it = karteListe.iterator();
             
            for (int i = 0; i < anzahlKartenImDeck; i++) {
                  int zufallsIndex = zufall.nextInt(gibAnzahlkarten()); 
