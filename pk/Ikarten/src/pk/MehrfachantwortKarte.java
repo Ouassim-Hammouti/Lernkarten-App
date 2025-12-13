@@ -29,10 +29,10 @@ public class MehrfachantwortKarte extends Lernkarte {
     }
 
     @Override
-    public void zeigeVorderseite() {
-        System.out.println("[" + getId() + ", " + getKategorie() + "] " + getTitel() + ":");
+   public void zeigeVorderseite() {
+        super.zeigeVorderseite(); 
         for (int i = 0; i < moeglicheAntworten.length; i++) {
-            System.out.println((i) + ": " + moeglicheAntworten[i]);
+            System.out.println(i + ": " + moeglicheAntworten[i]);
         }
     }
 

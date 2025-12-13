@@ -29,7 +29,7 @@ public class LernkarteiArray  {
             return;
         }
 
-        for(int i = 0 ; i < karten.length ; i++){
+        for(int i = 0 ; i < anzahlkarten ; i++){
             if(karten[i]!=null)
             
             karten[i].druckeKarte();
