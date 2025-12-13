@@ -17,18 +17,17 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
  
     public static void main(String[] args) {
-         try (Database db = Database.getInstance()) {
+         try (Connection connection = Database.getInstance().getConnection()) {
 
-         
-            Connection conn = db.getConnection();
-
-          
-            LernkartenDao dao = new LernkartenDao(conn);
-            Lernkartei kartei = new Lernkartei(dao);
+         System.out.println("Datenbankverbindung erfolgreich hergestellt.");
+            
 
           
+            LernkartenDao dao = new LernkartenDao(connection);
+             kartei = new Lernkartei(dao);
 
-           
+              Menu menu = new Menu();
+              menu.anzeigen();
          
 
         } catch (SQLException e) {
@@ -36,8 +35,7 @@ public class Menu {
             e.printStackTrace();
         }
 
-        Menu menu = new Menu();
-        menu.anzeigen();
+     
     }
 
     public void anzeigen() {
