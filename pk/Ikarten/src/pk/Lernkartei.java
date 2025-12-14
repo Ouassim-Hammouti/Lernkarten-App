@@ -102,7 +102,7 @@ private LernkartenDao dao;
         csv.append("ID,Kategorie,Titel,Frage,Antwort(en),Richtige Antwort(en)\n");
 
         for (Lernkarte karte : Liste) {
-            csv.append(karte.exportiereAlsCsv()).append("\n");
+            csv.append(karte.exportiereAlsCsv());
         }
 
         Files.writeString(datei, csv.toString());
@@ -124,7 +124,7 @@ public void exportiereEintraegeAlsCsvNio(Path datei) throws IOException, SQLExce
       
         for (Lernkarte karte : Liste) {
             writer.write(karte.exportiereAlsCsv());
-            writer.newLine();
+             
         }
 
     

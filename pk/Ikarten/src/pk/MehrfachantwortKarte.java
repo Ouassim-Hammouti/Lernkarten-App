@@ -64,7 +64,8 @@ public class MehrfachantwortKarte extends Lernkarte {
         return super.equals(other);
     }
 
-    public void validiere(Lernkarte karte) throws UngueltigeKarteException {
+    @Override
+    public void validiere() throws UngueltigeKarteException {
         super.validiere();
         if (moeglicheAntworten == null || moeglicheAntworten.length < 2) {
             throw new UngueltigeKarteException("Ungültige mögliche Antworten");
@@ -87,8 +88,8 @@ public class MehrfachantwortKarte extends Lernkarte {
         sb.append(getKategorie()).append(",");
         sb.append(getTitel()).append(",");
         sb.append(getFrage()).append(",");
-        sb.append(moeglicheant).append(",");
-        sb.append(richtigeant);
+        sb.append("\"").append(moeglicheant).append("\",");
+        sb.append("\"").append(richtigeant).append("\"");
         sb.append("\n");
         return sb.toString();
     }

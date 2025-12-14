@@ -66,7 +66,7 @@ public class EinzelantwortKarte extends Lernkarte {
         sb.append(getKategorie()).append(",");
         sb.append(getTitel()).append(",");
         sb.append(getFrage()).append(",");
-        sb.append(antwort);
+        sb.append(antwort).append(",");
         sb.append("\n");
         return sb.toString();
     }

@@ -12,15 +12,7 @@ import pk.EinzelantwortKarte;
 import pk.Lernkarte;
 import pk.MehrfachantwortKarte;
 
-/** 
-import pk.lkarten.DoppelteKarteException;
-import pk.lkarten.EinzelantwortKarte;
-import pk.lkarten.Lernkarte;
-import pk.lkarten.MehrfachantwortKarte;
 
-Ich hab den Import zu oben geändert da sich die KLassen in anderen 
-Ordern befinden. Bitte anpassen falls das nicht stimmt.
-*/
 
 
 
@@ -38,7 +30,7 @@ public class LernkartenDao {
 		this.conn = conn;
 	}
 
-	// Implementierung der vier Methoden für LernkartenDao mit try-with-resources
+	
 
 public int createEinzelantwortKarte(EinzelantwortKarte karte) throws SQLException, DoppelteKarteException {
     String sql = "INSERT OR IGNORE INTO lernkarte (kategorie, titel, frage, antwort, typ) VALUES (?, ?, ?, ?, ?)";
