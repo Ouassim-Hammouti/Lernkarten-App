@@ -1,7 +1,7 @@
 package pk.Ikarten;
 
 
-class UngueltigeKarteException extends Exception {
+public class UngueltigeKarteException extends Exception {
 
 
 public UngueltigeKarteException(String message) {

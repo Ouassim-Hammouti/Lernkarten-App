@@ -26,6 +26,19 @@ public class EinzelantwortKarte extends Lernkarte {
         System.out.println(getFrage());
     }
 
+    
+    
+    public  String gibVorderseite() {
+    	String Vorderseite = this.getFrage();
+        return Vorderseite;
+    }
+    
+    public String gibRueckseite() {
+    	String Rueckseite = "Die richtige Antwort ist : "+this.getAntwort();
+    	return Rueckseite;
+    }
+    
+    
     @Override
     public void zeigeRueckseite() {
         System.out.println("    " + antwort);
@@ -69,5 +82,15 @@ public class EinzelantwortKarte extends Lernkarte {
         sb.append(antwort).append(",");
         sb.append("\n");
         return sb.toString();
+
     }
+
+	@Override
+	public String toString() {
+		return super.toString() + ",antwort=" + antwort + "]";
+	}
+    
+    
+    
+    
 }

@@ -7,7 +7,12 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -26,15 +31,18 @@ private LernkartenDao dao;
 
 
 
-   public void hinzufuegen(Lernkarte lernkarte) throws SQLException, UngueltigeKarteException, DoppelteKarteException {
+   public int hinzufuegen(Lernkarte lernkarte) throws SQLException, UngueltigeKarteException, DoppelteKarteException {
         lernkarte.validiere();
+        int id ;
         if (lernkarte instanceof EinzelantwortKarte) {
-            dao.createEinzelantwortKarte((EinzelantwortKarte) lernkarte);
+            id = dao.createEinzelantwortKarte((EinzelantwortKarte) lernkarte);
         } else if (lernkarte instanceof MehrfachantwortKarte) {
-            dao.createMehrfachantwortKarte((MehrfachantwortKarte) lernkarte);
+            id =dao.createMehrfachantwortKarte((MehrfachantwortKarte) lernkarte);
         } else {
             throw new IllegalArgumentException("Unbekannter Kartentyp.");
         }
+        
+        return id;
     }
     
 
@@ -128,9 +136,61 @@ public void exportiereEintraegeAlsCsvNio(Path datei) throws IOException, SQLExce
              
         }
 
-    
      }
 
-    }
+}
+
+public Lernkarte[] gibAlleKarten() throws SQLException { 
+	
+	String sql="SELECT * FROM Lernkarte";
+	
+	
+	List<Lernkarte> lernkarteListe = new ArrayList<>();
+	
+	try(Connection conn = DriverManager.getConnection("jdbc:sqlite:lernkarten.db");
+		Statement statement = conn.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql)){
+		
+		while(resultSet.next()) {
+			
+			
+			int id = resultSet.getInt("id");
+			String kategorie = resultSet.getString("kategorie");
+			String titel = resultSet.getString("titel");
+            String frage = resultSet.getString("frage");
+            String typ = resultSet.getString("Typ");
+            
+           
+ 
+           
+            Lernkarte karte;
+            
+            
+            
+            if ("E".equals(typ)) {   
+            	 String antwort = resultSet.getString("antwort");
+                karte = new EinzelantwortKarte(id, kategorie, titel,frage,antwort);
+                
+            } else if ("M".equals(typ)) {  
+            	  String antwort = resultSet.getString("antwort");  
+            	  
+               
+                karte = new MehrfachantwortKarte(id, kategorie, titel,frage,null,null); 
+            } else {
+                continue; 
+            }
+
+            lernkarteListe.add(karte);
+            
+	
+}
+
+
+
+		}
+	return lernkarteListe.toArray(new Lernkarte[0]);
+
+	}	
+
 
 }

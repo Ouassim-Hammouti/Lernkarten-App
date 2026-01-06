@@ -69,7 +69,7 @@ public int createMehrfachantwortKarte(MehrfachantwortKarte karte) throws SQLExce
         pstmt.setString(1, karte.getKategorie());
         pstmt.setString(2, karte.getTitel());
         pstmt.setString(3, karte.getFrage());
-        pstmt.setString(4, null); 
+        pstmt.setString(4, "");
         pstmt.setString(5, "M");
         
         int affectedRows = pstmt.executeUpdate();
@@ -232,7 +232,7 @@ public List<Lernkarte> findByKategorie(String kategorie) throws SQLException {
 		MehrfachantwortKarte karte = null;
 		int id = rs.getInt("id");
 
-		// Zweite Abfrage fuer die Antwortoptionen
+		
 		String sql = "	SELECT antwort_index, antwort_text, ist_richtig FROM mehrfachantwort	WHERE lernkarte_id = ? ORDER BY antwort_index";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -247,15 +247,14 @@ public List<Lernkarte> findByKategorie(String kategorie) throws SQLException {
 					String text = rs2.getString("antwort_text");
 					boolean istRichtig = rs2.getBoolean("ist_richtig");
 
-					// Dank Sortierung nach antwort_index bleiben die Antworten in der richtigen
-					// Reihenfolge
+				
+				
 					moeglicheAntworten.add(text);
 					if (istRichtig)
 						richtigeAntworten.add(antwortIndex);
 				}
 
-				// Liste der richtigen Antworten manuell in ein Array umwandeln, da
-				// toArray() nur fuer Objekttypen verfuegbar ist
+			
 				int[] richtigeArr = new int[richtigeAntworten.size()];
 				for (int i = 0; i < richtigeAntworten.size(); i++)
 					richtigeArr[i] = richtigeAntworten.get(i);

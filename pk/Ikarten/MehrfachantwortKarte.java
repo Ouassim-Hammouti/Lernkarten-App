@@ -36,6 +36,34 @@ public class MehrfachantwortKarte extends Lernkarte {
         }
     }
 
+    public  String gibVorderseite() {
+    	StringBuilder vorderseite = new StringBuilder ();
+    	
+    	vorderseite.append("Frage : ").append(getFrage()).append("\n");
+    	
+    	vorderseite.append("Mögliche Antworten:").append("\n");
+    	for (int i = 0;i<moeglicheAntworten.length;i++) {
+    		vorderseite.append(i+1).append(":").append(moeglicheAntworten[i]).append("\n");
+    	}
+    	return vorderseite.toString();
+    }
+    
+    public String gibRueckseite() {
+    	StringBuilder rueckseite = new StringBuilder();
+    	
+    	rueckseite.append("Die Richtigen Antworten sind :").append("\n");
+    	
+    	for (int i = 0;i<richtigeAntwort.length;i++) {
+    		rueckseite.append(richtigeAntwort[i]+1).append(":").append(moeglicheAntworten[richtigeAntwort[i]]).append("\n"); 
+    		
+    	}
+    	
+    	return rueckseite.toString();
+    }
+    
+    
+    
+    
     @Override
     public void zeigeRueckseite() {
         System.out.println("Die richtigen Antworten sind:");
@@ -93,4 +121,17 @@ public class MehrfachantwortKarte extends Lernkarte {
         sb.append("\n");
         return sb.toString();
     }
+
+	@Override
+	public String toString() {
+		return super.toString() + ",moeglicheAntworten=" + Arrays.toString(moeglicheAntworten) + ", richtigeAntwort="
+				+ Arrays.toString(richtigeAntwort) + "]";
+	}
+    
+    
+    
+    
+    
+    
+    
 }

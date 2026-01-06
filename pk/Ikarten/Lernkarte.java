@@ -3,6 +3,8 @@ package pk.Ikarten;
 import java.util.Objects;
 
 public abstract class Lernkarte implements Comparable<Lernkarte>, ValidierbareKarte, CsvExportable {
+
+	
    private int id;
    private String kategorie;
    private String titel;
@@ -52,6 +54,13 @@ public abstract class Lernkarte implements Comparable<Lernkarte>, ValidierbareKa
       System.out.println(frage);
    }
 
+   public abstract String gibVorderseite();
+   
+   
+   public abstract String gibRueckseite();
+   
+   
+   
    public abstract void zeigeRueckseite();
 
    public void druckeKarte() {
@@ -94,4 +103,10 @@ public abstract class Lernkarte implements Comparable<Lernkarte>, ValidierbareKa
       sb.append("\n");
       return sb.toString();
    }
+   
+   
+   public String toString() {
+		return "Lernkarte [id=" + id + ", kategorie=" + kategorie + ", titel=" + titel + ", frage=" + frage ;
+	}
+
 }

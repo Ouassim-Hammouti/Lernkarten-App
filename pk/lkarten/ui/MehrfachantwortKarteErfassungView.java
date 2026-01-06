@@ -1,5 +1,7 @@
 package pk.lkarten.ui;
 
+import java.sql.SQLException;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,22 +14,29 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import pk.Ikarten.DoppelteKarteException;
+import pk.Ikarten.EinzelantwortKarte;
 import pk.Ikarten.Lernkarte;
+import pk.Ikarten.Lernkartei;
 import pk.Ikarten.MehrfachantwortKarte;
+import pk.Ikarten.UngueltigeKarteException;
+import pk.lkarten.ui.util.DialogUtil;
 
 public class MehrfachantwortKarteErfassungView extends Erfassungview{
 
 	TextField kat;
 	TextField titel;
 	TextArea Frage;
+	private Lernkartei lernkartei;
 	
 	private TextArea[] antwortFelder = new TextArea[5];
     private CheckBox[] richtigBoxen = new CheckBox[5];
 	
     
-	public MehrfachantwortKarteErfassungView(Stage owner, Lernkarte karte) {
+	public MehrfachantwortKarteErfassungView(Stage owner, Lernkarte karte,Lernkartei lernkartei) {
 		super(owner, karte);
-	
+		this.lernkartei = lernkartei ;
+		
 		this.setTitle("Erfassung einer Mehrfachantwortkarte");
 		
 		aufbauenGUI();
@@ -90,8 +99,65 @@ public class MehrfachantwortKarteErfassungView extends Erfassungview{
 		
 		var buttonGrid =new GridPane();
 		 var OK = new Button("OK");
+		 
+		 OK.setOnAction(event->{
+			 
+			 String ka = kat.getText();
+			 String Ti = titel.getText();
+			 String fr = Frage.getText();
+			 
+			 String[] ant = new String[antwortFelder.length];
+			 
+			 for(int i =0;i<antwortFelder.length;i++) {
+				 if(antwortFelder[i]!= null) {
+					 ant [i]=antwortFelder[i].getText();
+				 }
+			 }
+			 
+			 int[] richtigeantworten = new int [5];
+			 int j =0;
+			 
+			 for(int i =0;i<richtigeantworten.length;i++) { 
+				 if(richtigBoxen[i].isSelected()) {
+					
+					 richtigeantworten[j++]=i;
+				 }
+			 }
+			 
+			 
+			 try {
+				 
+		    	MehrfachantwortKarte karte = new MehrfachantwortKarte (0,ka,Ti,fr,ant,richtigeantworten );
+		    	
+		    	karte.validiere();
+		    	
+		    	 int id = lernkartei.hinzufuegen(karte);
+		         DialogUtil.showMessageDialog("Erfolg", "Karte ID " + id + " gespeichert!");
+		         
+		         ((Stage) OK.getScene().getWindow()).close();
+			 }
+			 
+			 catch (UngueltigeKarteException ex) {
+				    DialogUtil.showErrorDialog("Eingabefehler", ex.getMessage());  
+				} catch (SQLException ex) {
+				    DialogUtil.showErrorDialog("Datenbankfehler", ex.getMessage());
+				} catch (DoppelteKarteException ex) {
+				    DialogUtil.showErrorDialog("Doppelte Karte", ex.getMessage());
+				}
+			 
+			
+			 
+			( (Stage)OK.getScene().getWindow()).close();
+			 
+		    });
+		 
 		 var Abbrechen = new Button("Abbrechen");
-		   
+		 
+		 Abbrechen.setOnAction(event->{
+				
+			 ((Stage) Abbrechen.getScene().getWindow()).close();
+		});
+		 
 		buttonGrid.setHgap(10);
 	    buttonGrid.setAlignment(Pos.CENTER);
 	    
