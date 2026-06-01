@@ -24,12 +24,34 @@ Es wurde im Rahmen eines Universitätsprojekts entwickelt und dient der praktisc
 - Nutzung einer relationalen SQLite-Datenbank zur Speicherung von Aufgaben
 - Umsetzung typischer CRUD-Operationen
 
-## Projektstruktur
-src/
-├── Main.java
-├── Task.java
-├── Database.java
-└── TaskRepository.java
+pk-praktikum/
+│
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/todoapp/
+│               ├── Main.java
+│               │
+│               ├── model/
+│               │   └── Task.java
+│               │
+│               ├── repository/
+│               │   └── TaskRepository.java
+│               │
+│               ├── database/
+│               │   └── Database.java
+│               │
+│               └── ui/
+│               
+│
+├── resources/
+│   
+│
+├── lib
+│
+├── README.md
+├── .gitignore
+
 
 ## Lernziele
 - Anwendung von objektorientierter Programmierung in Java
