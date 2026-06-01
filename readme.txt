@@ -1,2 +1,54 @@
-Ouassim Hammouti 7218987
-Bilal Jaddi 7218330
+# To-Do-App (Java, SQLite, JDBC)
+
+## Projektübersicht
+Dieses Projekt ist eine einfache To-Do-Anwendung zur Verwaltung von Aufgaben.  
+Es wurde im Rahmen eines Universitätsprojekts entwickelt und dient der praktischen Anwendung von Java, Datenbanken und Softwareentwicklungskonzepten.
+
+## Funktionen
+- Aufgaben erstellen
+- Aufgaben anzeigen
+- Aufgaben bearbeiten
+- Aufgaben löschen (CRUD-Funktionalität)
+- Persistente Speicherung der Daten in einer SQLite-Datenbank
+
+## Verwendete Technologien
+- Java
+- SQLite
+- JDBC
+- Objektorientierte Programmierung (OOP)
+- Git / GitHub
+
+## Technische Umsetzung
+- Implementierung einer Java-Anwendung mit strukturierter Klassenarchitektur
+- Datenbankanbindung über JDBC
+- Nutzung einer relationalen SQLite-Datenbank zur Speicherung von Aufgaben
+- Umsetzung typischer CRUD-Operationen
+
+## Projektstruktur
+src/
+├── Main.java
+├── Task.java
+├── Database.java
+└── TaskRepository.java
+
+## Lernziele
+- Anwendung von objektorientierter Programmierung in Java
+- Arbeiten mit relationalen Datenbanken
+- Datenbankzugriff über JDBC
+- Strukturierung eines Java-Projekts
+- Versionskontrolle mit Git
+
+## Ausführen des Projekts
+1. Repository klonen:
+git clone https://github.com/Ouassim-Hammouti/To-do-App.git
+
+2. Projekt in einer Java-IDE öffnen (z. B. IntelliJ IDEA oder Eclipse)
+
+3. Main-Klasse starten
+
+## Autor
+Ouassim Hammouti  
+Studium: Wirtschaftsinformatik
+
+## Hinweis
+Dies ist ein studentisches Projekt zur praktischen Anwendung von Softwareentwicklungskonzepten.
