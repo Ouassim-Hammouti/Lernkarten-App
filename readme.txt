@@ -1,14 +1,14 @@
-# To-Do-App (Java, SQLite, JDBC)
+# Lernkarten-App (Java, SQLite, JDBC)
 
 ## Projektübersicht
-Dieses Projekt ist eine einfache To-Do-Anwendung zur Verwaltung von Aufgaben.  
+Dieses Projekt ist eine Lernkarten-Anwendung (Flashcard-System) zur Verwaltung und Abfrage von Lernkarten.  
 Es wurde im Rahmen eines Universitätsprojekts entwickelt und dient der praktischen Anwendung von Java, Datenbanken und Softwareentwicklungskonzepten.
 
 ## Funktionen
-- Aufgaben erstellen
-- Aufgaben anzeigen
-- Aufgaben bearbeiten
-- Aufgaben löschen (CRUD-Funktionalität)
+- Lernkarten erstellen
+- Lernkarten anzeigen
+- Lernkarten bearbeiten
+- Lernkarten löschen (CRUD-Funktionalität)
 - Persistente Speicherung der Daten in einer SQLite-Datenbank
 
 ## Verwendete Technologien
@@ -21,7 +21,7 @@ Es wurde im Rahmen eines Universitätsprojekts entwickelt und dient der praktisc
 ## Technische Umsetzung
 - Implementierung einer Java-Anwendung mit strukturierter Klassenarchitektur
 - Datenbankanbindung über JDBC
-- Nutzung einer relationalen SQLite-Datenbank zur Speicherung von Aufgaben
+- Nutzung einer relationalen SQLite-Datenbank zur Speicherung von Lernkarten
 - Umsetzung typischer CRUD-Operationen
 
 pk-praktikum/
@@ -29,23 +29,21 @@ pk-praktikum/
 ├── src/
 │   └── main/
 │       └── java/
-│           └── com/todoapp/
+│           └── com/lernkartenapp/
 │               ├── Main.java
 │               │
 │               ├── model/
-│               │   └── Task.java
+│               │   └── Lernkarte.java
 │               │
 │               ├── repository/
-│               │   └── TaskRepository.java
+│               │   └── LernkarteRepository.java
 │               │
 │               ├── database/
 │               │   └── Database.java
 │               │
 │               └── ui/
-│               
 │
 ├── resources/
-│   
 │
 ├── lib
 │
@@ -62,7 +60,7 @@ pk-praktikum/
 
 ## Ausführen des Projekts
 1. Repository klonen:
-git clone https://github.com/Ouassim-Hammouti/To-do-App.git
+git clone https://github.com/Ouassim-Hammouti/Lernkarten-App.git
 
 2. Projekt in einer Java-IDE öffnen (z. B. IntelliJ IDEA oder Eclipse)
 
